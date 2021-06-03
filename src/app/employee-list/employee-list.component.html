@@ -1,0 +1,129 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{'Emloyee_Information'|translate}} </h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/add-employee"><i class="fa fa-plus" aria-hidden="true">
+
+          </i> {{'Register'|translate}}</a> </li>
+          <li class="breadcrumb-item"> <button class="button-sm" (click)="searchStatusInactive()">{{'Inactive'|translate}}</button></li>
+          <li class="breadcrumb-item"> <button class="button-sm" (click)="searchStatusActive()">{{'Active'|translate}}</button></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-body">
+  <div class="container-fluid">
+
+  <div class="table-responsive mt-5 ">
+  <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger" >
+      <thead>
+        <tr>
+
+
+          <th></th>
+        <th>{{'Name'|translate}}</th>
+        <th>{{'Employee_Basic_Salary'|translate}}</th>
+         <th>{{'Position_Salary'|translate}}</th>
+          <th>{{'Employee_directorate'|translate}}</th>
+          <th>{{'Directorate_Cluster'|translate}}</th>
+          <th> {{'AcfGrade'|translate}}</th>
+           <th>{{'Level'|translate}}</th>
+          <th>{{'Employee_Type'|translate}}</th>
+          <th>{{'PhonePhone_Number'|translate}}</th>
+          <th>{{'Email'|translate}}</th>
+          <th>{{'Employee_Bank_Account'|translate}}</th>
+          <th  >{{'Action'|translate}}</th>
+          <th></th>
+
+         </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let employee of employees; index as i">
+          <td>{{i+1}}</td>
+          <td>{{employee.employeeFirstName}}  {{employee.employeeLastName}}</td>
+
+          <td>{{employee.employeeSalary.salaryAmount}}</td>
+          <td>{{employee.position.positionSalary}}</td>
+          <td>{{employee.employeeDirectorate.directorateName}}</td>
+          <td>{{employee.employeeDirectorate.section.sectionName}}</td>
+          <td>{{employee.employeeSalary.icfGrade.icfgradeName}}</td>
+           <td>{{employee.employeeSalary.level.levelName}}</td>
+          <td>{{employee.employeeType}}</td>
+          <td>{{employee.employeePhoneNumber}}</td>
+          <td>{{employee.employeeEmail}}</td>
+          <td>{{employee.employeeAccountNumber}}</td>
+
+        <td class="not-export-col">
+
+
+
+          <button (click)="updateEmployee(employee.employeeId)" class="btn btn-info">{{'Update'|translate}}</button>
+         </td>
+         <td class="not-export-col"><button title="Delete" class="btn btn-danger" style="margin-left: 10px;" (click)="open(content,employee.employeeId)"
+          href="javascript:void(0); ">{{'Delete'|translate}}</button></td>
+
+
+
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+    </div>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"><span>{{'Confirmation'|translate}}</span></h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{'Confirm_Delete'|translate}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">{{'Cancel'|translate}}</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('yes')">{{'Yes'|translate}}</button>
+      </div>
+    </ng-template>
+  </div>
+
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-4">
+          <p *ngIf="status==true" class="text-center">
+
+            <span class="text-success">{{'Saved_Successfully'|translate}}</span>
+          </p>
+          <h1 class="m-0 text-dark">Save History </h1>
+          <div class="form-group">
+            <form (ngSubmit)="saveHistory()">
+              <label>{{'Date'|translate}}:</label>
+              <div class="input-group date" id="date" data-target-input="nearest">
+                <input type="date" class="form-control datetimepicker-input" name="time" [(ngModel)]="history.time">
+                __
+                <button class="btn btn-success" type="submit">{{'Approve'|translate}}</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <ol class="breadcrumb float-sm-right">
+           </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

@@ -1,0 +1,47 @@
+
+
+
+<!-- success Message -->
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Hello</strong> {{'Your_data_has_been_successfully_entered'|translate}}
+  <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<!-- end of success Message -->
+
+
+
+
+
+<div class="col-md-6 offset-md-3">
+  <h3> {{'Add_Income'|translate}} </h3>
+  <form (ngSubmit)="onSubmit()" #createEmployeeform="ngForm" novalidate class="mb-5">
+
+
+    <div class="form-group">
+      <label> {{'Minimum_Value'|translate}}</label>
+      <input type="text" class="form-control" id="firstName"
+       [(ngModel)]="incometax.incomeTaxMin" name="firstName" required>
+    </div>
+
+    <div class="form-group">
+      <label> {{'Maximum_Value'|translate}} </label>
+      <input type="text" class="form-control" id="section" [(ngModel)]="incometax.incomeTaxMax" name="lastName" required>
+    </div>
+
+    <div class="form-group">
+      <label> {{'Amount'|translate}} </label>
+      <input type="text" class="form-control" id="level" [(ngModel)]="incometax.incomeTaxpercentage"
+      name="emailId" required >
+    </div>
+    <div class="form-group">
+      <label> {{'Offset'|translate}} </label>
+      <input type="text" class="form-control" id="level" [(ngModel)]="incometax.incomeTaxOffSet" name="emailId"
+        required>
+    </div>
+
+
+  <button type="submit" class="btn btn-primary" [disabled]="!createEmployeeform.valid">Submit</button>
+  </form>
+</div>

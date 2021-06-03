@@ -1,0 +1,30 @@
+{
+   "Site_title": "Sirna kanfaltii Mindaa AIC",
+    "Name": "Name",
+    "NameError": "I am sure you must have a name!",
+    "Email": "Email address",
+    "PhoneNo": "Phone No",
+    "Password": "Password",
+    "Bio": "Enter bio",
+    "TermsConditions": "I agree to terms and conditions.",
+    "Submit": "Submit",
+    "salary":"Salary",
+     "Allowance Types":"Allowance Types",
+     "Home":"Home",
+     "Allowance Name":"Allowance Name",
+     "Action":"Action",
+     "Update":"Update",
+     "Delete":"Delete",
+     "Confirmation":"Confirmation",
+     "Are you sure to delete this?":"Are you sure to delete this?",
+     "yes":"yes",
+     "is added":"dabalameera",
+     " Detail info":" oddeeffaannoo baldhaa",
+     "logout":"keessa bahi",
+
+    "back payement for  employees":"kaffaltii duuba hojjetootaa",
+    "user menu":"Maanuuwaalii Fayyadama",
+    "history":"Seenaa",
+
+  "view history":"seenaa ilaali"
+}

@@ -1,0 +1,43 @@
+
+
+<div class="col-md-6 offset-md-3 mb-5">
+
+<form (ngSubmit)="onSubmit()" #createEmployeeform="ngForm" novalidate>
+    <div class="form-group">
+      <label for="gross" class="text-center">Choose Employee </label>
+
+      <select class="form-control" placeholder="employeeId" [(ngModel)]="employeeDeduction.employee" name="employeeId">
+        <option *ngFor="let employee of (employees|async)" [ngValue]="employee" required>
+          {{employee.employeeFirstName}}
+          {{employee.employeeLastName}}
+        </option>
+
+      </select>
+    </div>
+
+
+  <div class="form-group">
+    <label for="gross" class="text-center">Choose Deduction Name </label>
+    <select class="form-control" placeholder="deductionId"
+     [(ngModel)]="employeeDeduction.deduction" name="deductionId">
+      <option *ngFor="let deduction of (deductions|async)" [ngValue]="deduction" required>{{deduction.deductionName}}
+      </option>
+
+    </select>
+  </div>
+
+
+
+
+    <div class="form-group">
+      <label> Amount/ Percentage /Months to be Finished</label>
+      <input type="text" class="form-control"
+       id="amount" [(ngModel)]="employeeDeduction.amount"
+        name="amount"  required>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="!createEmployeeform.valid">Submit</button>
+
+  </form>
+</div>

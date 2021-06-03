@@ -1,0 +1,39 @@
+
+
+<div class="col-md-6 offset-md-3 mb-5">
+  <h3> {{'Add_Salary'|translate}} </h3>
+  <form (ngSubmit)="onSubmit()" #salaryEmployeeform="ngForm" novalidate>
+
+
+<div class="form-group">
+  <label for="icfGrade" class="text-center"> {{'AcfGrade'|translate}}</label>
+
+  <select class="form-control" placeholder="iCFGradeid" [(ngModel)]="salary.icfGrade" name="salaryId">
+    <option *ngFor="let icfGrade of (icfGrades|async)" [ngValue]="icfGrade">{{icfGrade.icfgradeName}}</option>
+
+  </select>
+
+</div>
+
+<div class="form-group">
+  <label for="Level" class="text-center"> {{'Level'|translate}}</label>
+
+  <select class="form-control" placeholder="level" [(ngModel)]="salary.level" name="levelId">
+    <option *ngFor="let level of (levels|async)" [ngValue]="level">{{level.levelName}}</option>
+
+  </select>
+
+</div>
+
+
+<div class="form-group">
+  <label> {{'Salary'|translate}}</label>
+  <input type="text" class="form-control" id="salaryId" [(ngModel)]="salary.salaryAmount" name="salaryAmount" required>
+</div>
+
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="!salaryEmployeeform.valid">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

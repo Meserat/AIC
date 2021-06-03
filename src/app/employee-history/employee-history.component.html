@@ -1,0 +1,85 @@
+ <h2 class="text-center blue">{{'Employee_History'|translate}}</h2>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-4">
+        <h1 class="text-center "></h1>
+      </div><!-- /.col -->
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <form (ngSubmit)="searchByDate()">
+            <div class="col-sm-8 mb-3">
+              <label for="level" class="text-center"> {{'Date'|translate}}</label>
+              <select class="form-control" placeholder="date " [(ngModel)]="date" name="date">
+                <option *ngFor="let history of newTime" [ngValue]="history">
+                  {{history}}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <button class="btn btn-success" type="submit">{{'Find'|translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-4">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/employee-history">{{'Home'|translate}}</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content-body">
+  <div class="container-fluid">
+
+    <div class="table-responsive mt-5 ">
+  <table class="table table-striped table-bordered table-sm row-border hover"
+  >
+        <thead>
+          <tr>
+            <th></th>
+            <th>{{'Name'|translate}}</th>
+            <th>{{'PhonePhone_Number'|translate}}</th>
+            <th>{{'Email'|translate}}</th>
+            <th>{{'Employee_Bank_Account'|translate}}</th>
+            <th>{{'Employee_Basic_Salary'|translate}}</th>
+            <th>{{'Cluster'|translate}}</th>
+            <th>{{'Level'|translate}}</th>
+            <th>{{'Position'|translate}}</th>
+            <th>{{'Position_Salary'|translate}}</th>
+            <th>{{'Time'|translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let employeeHistory of ee[0]; let i = index">
+
+            <td>{{i+1}}</td>
+            <td>{{employeeHistory.employeeFirstName}} {{employeeHistory.employeeLastName}}</td>
+
+            <td>{{employeeHistory.employeePhoneNumber}}</td>
+            <td>{{employeeHistory.employeeEmail}}</td>
+            <td>{{employeeHistory.employeeAccountNumber}}</td>
+            <td>{{employeeHistory.employeeBasicSalary}}</td>
+            <td>{{employeeHistory.employeeSection}}</td>
+            <td>{{employeeHistory.employeeLevel}}</td>
+            <td>{{employeeHistory.employeePosition}}</td>
+            <td>{{employeeHistory.employeePositionSalary}}</td>
+            <td>{{employeeHistory.time}}</td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

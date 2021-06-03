@@ -1,0 +1,68 @@
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">{{'Income_Tax_List'|translate}}</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/income">{{'Add_New_Income_Tax'|translate}}</a></li>
+            </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="content-body">
+  <div class="container-fluid">
+<table class="table table-striped table-bordered table-sm row-border hover mb-5"
+ datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" >
+  <thead>
+    <tr>
+
+      <th> {{'Minimum_Value'|translate}} </th>
+      <th> {{'Maximum_Value'|translate}} </th>
+      <th> {{'Amount'|translate}}</th>
+      <th>{{'Offset'|translate}}</th>
+      <th > {{'Action'|translate}} </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let incomeTax of incomeTaxs">
+       <td> {{ incomeTax.incomeTaxMin }} </td>
+        <td> {{ incomeTax.incomeTaxMax}} </td>
+         <td> {{ incomeTax.incomeTaxpercentage}} </td>
+         <td>{{incomeTax.incomeTaxOffSet}}</td>
+
+    <td><button (click)="updateIncomeTax(incomeTax.incomeTaxId)" class="btn btn-info"> {{'Update'|translate}}</button></td>
+    <td>
+      <button class="btn btn-danger" title="Delete" (click)="open(content,incomeTax.incomeTaxId)" href="javascript:void(0);">{{'Delete'|translate}}</button>
+    </td>
+
+        </tr>
+  </tbody>
+</table>
+  </div>
+    </div>
+
+ <!-- delete Confirmation -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><span>{{'Confirmation'|translate}}</span></h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'Confirm_Delete'|translate}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">{{'Cancel'|translate}}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('yes')">{{'Yes'|translate}}</button>
+  </div>
+</ng-template>
+
+

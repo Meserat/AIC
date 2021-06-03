@@ -1,0 +1,41 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{'Position_of_Employee'|translate}}</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/create-position"><i class="fa fa-plus" aria-hidden="true">
+
+              </i> {{'Register'|translate}}</a> </li>
+         </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-body">
+  <div class="container-fluid">
+    <table class="table table-striped">
+  <thead>
+    <tr>
+           <th> {{'Position_Name'|translate}} </th>
+      <th> {{'Position_Salary'|translate}}</th>
+      <th> Actions </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let position of positions">
+       <td> {{ position.positionName }} </td>
+      <td> {{ position.positionSalary }} </td>
+      <td>
+        <button (click)="updatePosition(position.positionId)" class="btn btn-info"> {{'Update'|translate}}</button>
+        <!-- <button (click)="deletePosition(position.positionId)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
+    -->
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

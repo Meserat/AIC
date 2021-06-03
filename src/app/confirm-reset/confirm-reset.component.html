@@ -1,0 +1,39 @@
+<div class="container padding-bottom-3x mb-2 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="forgot">
+        <h2>confirm password reset?</h2>
+      </div>
+      <form class="card mt-4 " (ngSubmit)="sendToken()">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="email-for-pass">Confirm Code </label>
+            <p>enter the code sent to yuor email here</p>
+            <input class="form-control" type="text" id="email-for-pass" required=""
+            [(ngModel)]="confirmationToken.confirmationToken"
+             name="code">
+             <p *ngIf="correctCode" style="color: red;">{{codeMessage}}</p>
+          </div>
+          <div class="form-group">
+            <label for="email-for-pass">New Password </label>
+            <input class="form-control" type="password" id="email-for-pass" required=""
+             [(ngModel)]="confirmationToken.userPassword"
+
+             name="current passwod">
+          </div>
+          <div class="form-group">
+            <label for="email-for-pass">Confirm Password </label>
+            <input class="form-control" type="password" id="email-for-pass" required=""
+             [(ngModel)]="confirmedPassword" name="current passwod">
+             <p *ngIf="confirmed == true" style="color: red;">{{message}}</p>
+          </div>
+        </div>
+        <div class="card-footer"> <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+
+
+
+      </form>
+    </div>
+  </div>
+</div>

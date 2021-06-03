@@ -1,0 +1,174 @@
+<div class="content-header">
+  <div class="container-fluid">
+  <form (ngSubmit)="onSubmit()" #userEmployeeform="ngForm" novalidate class="mb-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="firstName">{{'First_Name'|translate}}</label>
+        <input type="text" id="firstName" class="form-control" [(ngModel)]="users.userFirstName" name="firstName"
+          placeholder="Frist Name"
+            #firstName="ngModel"
+           aria-describedby="helpId" required>
+      </div>
+<!-- firstName Validation -->
+<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+
+  <div *ngIf="firstName.errors.required">
+    {{'First_Name_is_required'|translate}}
+  </div>
+
+</div>
+
+<!-- end of firstName validation -->
+
+
+ <!-- end of firstName Validation -->
+
+      <div class="form-group">
+        <label for="MiddleName">{{'Last_Name'|translate}}</label>
+        <input type="text" id="middleName" class="form-control" [(ngModel)]="users.userLastName"
+        name="middleName"
+          placeholder="LastName"
+         #lastName="ngModel"
+           required>
+      </div>
+        <!-- lastName Validation -->
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+
+          <div *ngIf="lastName.errors.required">
+            {{'Last_name_is_required'|translate}}
+          </div>
+
+        </div>
+
+        <!-- end of lastName validation -->
+
+
+
+      <div class="form-group">
+        <label for="username" class="text-center">{{'User_Name'|translate}}</label>
+        <input type="text" id="userName" class="form-control" [(ngModel)]="users.userUserName" name="userName"
+          placeholder="UserName" #username="ngModel" required>
+      </div>
+        <!--  Validation -->
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+
+          <div *ngIf="username.errors.required">
+            {{'User_Name'|translate}}
+          </div>
+
+        </div>
+
+        <!-- end of userName validation -->
+
+
+
+
+      <div class="form-group">
+        <label for="email" class="text-center">{{'User_Email'|translate}}</label>
+        <input type="email" id="account" class="form-control" [(ngModel)]="users.userEmail" name="userEmail"
+          placeholder="userEmail" aria-describedby="helpId"
+              #email1="ngModel"
+        required email>
+      </div>
+
+<!-- email validation  -->
+<div *ngIf="email1.invalid && (email1.dirty || email1.touched)" class="alert alert-danger">
+
+  <div *ngIf="email1.errors.required">
+    {{'email_is_required'|translate}}
+  </div>
+  <div *ngIf="email1.errors.email">
+    {{'email_must_contain_@'|translate}}
+  </div>
+
+</div>
+<!-- email validation end -->
+
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="phone " class="text-center">{{'Phone_Number'|translate}}</label>
+        <input  id="phoneNumber" class="form-control" [(ngModel)]="users.userPhoneNumber"
+        name="phoneNumber"
+         placeholder="PhoneNumber"
+           #phone="ngModel"
+
+           required maxlength="10" minlength="10" >
+      </div>
+
+
+
+
+
+
+
+<!--
+ phone Number validation -->
+<div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+
+  <div *ngIf="phone.errors.required">
+
+    {{'phone_is_required'|translate}}
+  </div>
+  <div *ngIf="phone.errors.minlength">
+
+    {{'Phone_must_be_at_least_10_characters_long'|translate}}
+  </div>
+  <div *ngIf="phone.errors.maxlength">
+    {{'Phone_must_be_equal_to_10_characters_long'|translate}}
+  </div>
+  <div *ngIf="phone.errors.pattern">
+    {{'only_number_is_allowed'|translate}}
+  </div>
+
+
+</div>
+<!-- end of phone Number Validation -->
+
+
+
+
+      <div class="form-group">
+        <label for="useraRole" class="text-center"> {{'User_Role'|translate}}</label>
+        <select name="userRole" id="userRole" class="form-control" [(ngModel)]="users.userRole" required="required">
+          <option *ngFor="let role of (roles|async)" [ngValue]="role">{{role.roleName}}</option>
+        </select>
+
+      </div>
+      <div class="form-group">
+        <label for="pass" class="text-center">{{'password'|translate}}</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="users.userPassword" name="gross"
+          placeholder="password"
+          #password="ngModel"
+          required email
+          minlength="6" >
+      </div>
+        <!-- end of phone Number Validation -->
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+
+        <div *ngIf="password.errors.required">
+
+        </div>
+        <div *ngIf="password.errors.minlength">
+          {{'Passsword_must_be_at_least_6_characters_long'|translate}}
+        </div>
+        <div *ngIf="password.errors.email">
+          {{'Wrong_Password_or_userName'|translate}}
+        </div>
+
+
+      </div>
+      <!-- end of phone Number Validation -->
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="!userEmployeeform.valid">{{'Submit'|translate}}</button>
+    </div>
+
+  </div>
+
+</form>
+
+  </div>
+  </div>

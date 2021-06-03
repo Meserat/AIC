@@ -1,0 +1,166 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <!-- <div class="form-group">
+  <label for="my-input">Pension</label>
+  <input type="number" name="" id="input" [(ngModel)]="pension" class="form-control">
+
+</div> -->
+        <!-- (click)="setPension()" -->
+        <!-- <button type="button" class="btn btn-primary float-right">save</button> -->
+
+      </div>
+    </div>
+
+
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">{{'Back_Payment'|translate}} </h1>
+          </div><!-- /.col -->
+          <!-- <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/month">Home</a></li>
+             </ol>
+          </div> -->
+
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-sm row-border hover " id="month" datatable
+        [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th></th>
+            <th>{{'Employee_Name'|translate}}</th>
+            <th>{{'Phone_Number'|translate}}</th>
+            <th>{{'Employee_Bank_Account'|translate}}</th>
+            <th>{{'Employee_Basic_Salary'|translate}}</th>
+            <th>{{'Salary_Difference'|translate}}</th>
+            <th>{{'Total_Salary'|translate}}</th>
+
+
+            <ng-container *ngFor="let allowance of allowances">
+              <th>
+                {{allowance.allowanceName}}
+              </th>
+            </ng-container>
+
+            <th>{{'Total_Allowance'|translate}}</th>
+            <th>{{'Gross_Salary'|translate}}</th>
+
+            <ng-container *ngFor="let deduction of deductions">
+              <th>
+                {{deduction.deductionName}}
+              </th>
+            </ng-container>
+            <th>{{'Pension'|translate}} </th>
+            <th>{{'incomeTax'|translate}}</th>
+            <th>{{'Total_Deduction'|translate}}</th>
+            <th><b>{{'Net_Salary'|translate}}</b></th>
+            <th>{{'Position'|translate}}</th>
+            <th>{{'Pay_Slip'|translate}}</th>
+          </tr>
+
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let monthlyPayroll of monthlyPayrolls; index as i">
+            <th>{{i+1}}</th>
+            <td>{{monthlyPayroll.firstName}} {{monthlyPayroll.lastName}}</td>
+            <td>{{monthlyPayroll.phoneNumber}}</td>
+            <td>{{monthlyPayroll.accountNumber}}</td>
+            <td>{{monthlyPayroll.salary|number : '1.2-2'}}</td>
+            <td>{{monthlyPayroll.difference|number : '1.2-2'}}</td>
+            <td>{{monthlyPayroll.totalSalary|number : '1.2-2'}}</td>
+
+            <td *ngFor="let allowance of allowances">
+              <div *ngIf="monthlyPayrolls[i].Allowance.get(allowance.allowanceName) !=null;
+              then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>{{monthlyPayrolls[i].Allowance.get(allowance.allowanceName)}}</ng-template>
+              <ng-template #elseBlock>{{"-"}}</ng-template>
+            </td>
+
+            <td> {{monthlyPayroll.totalAllowance}}</td>
+            <td>{{monthlyPayroll.grossSalary|number : '1.2-2'}}</td>
+
+
+            <td *ngFor="let deduction of deductions">
+              <div *ngIf="monthlyPayrolls[i].Deduction.get(deduction.deductionName) !=null;
+              then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>{{calculateDeduction(monthlyPayroll.totalSalary,
+                monthlyPayrolls[i].Deduction.get(deduction.deductionName), deduction.deductionType)|number : '1.2-2'}}
+              </ng-template>
+              <ng-template #elseBlock>{{"-"}}</ng-template>
+            </td>
+            <td>{{monthlyPayroll.pension | number : '1.2-2'}}</td>
+            <td>{{monthlyPayroll.incomeTax| number : '1.2-2'}}</td>
+
+            <td>{{monthlyPayroll.totalDeduction| number : '1.2-2'}}</td>
+
+            <td>{{monthlyPayroll.netSalary| number : '1.2-2'}}
+            </td>
+            <td>{{monthlyPayroll.position}}</td>
+
+
+            <td><button (click)="payrollDetails(monthlyPayroll.employeeId)" class="btn btn-info">{{'View'|translate}}</button></td>
+
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+    <div class="row mb-2">
+      <div class="col-sm-4">
+
+        <p *ngIf="status==true" class="text-center">
+
+          <span class="text-success">{{'Saved_successfully'|translate}}</span>
+        </p>
+        <h1 class="m-0 text-dark">{{'Save_Backup'|translate}} </h1>
+        <div class="form-group">
+          <form (ngSubmit)="saveHistory()">
+            <label>Date:</label>
+            <div class="input-group date" id="date" data-target-input="nearest">
+              <input type="date" class="form-control datetimepicker-input" name="time" [(ngModel)]="time">
+              __
+              <button class="btn btn-success" type="submit">{{'Approve'|translate}}</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/month"></a></li>
+        </ol>
+      </div>
+    </div>
+
+
+  </div>
+</div>

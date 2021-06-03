@@ -1,0 +1,23 @@
+<table class="table table-light">
+  <thead class="thead-light">
+    <tr>
+      <th>{{'Company_Name'|translate}}</th>
+
+        <th>{{'Company_Logo'|translate}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companys">
+      <td>{{company.companyName}}</td>
+      <td>{{company.companyLogo}}</td>
+      </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>hh</th>
+    </tr>
+  </tfoot>
+</table>
+
+
+

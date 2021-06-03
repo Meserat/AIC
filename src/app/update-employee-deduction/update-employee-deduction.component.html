@@ -1,0 +1,42 @@
+<div class="col-md-6 offset-md-3">
+  <h3>{{'Update_Employee_Deduction'|translate}} </h3>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="gross" class="text-center">{{'Choose_Employee'|translate}} </label>
+
+      <select class="form-control" placeholder="employeeId" [(ngModel)]="employeeDeduction.employee" name="employeeId">
+        <option *ngFor="let employee of (employees|async)" [ngValue]="employee">
+          {{employee.employeeFirstName}}
+          {{employee.employeeLastName}}
+        </option>
+
+      </select>
+    </div>
+
+
+  <div class="form-group">
+    <label for="gross" class="text-center">{{'Choose_Deduction'|translate}} </label>
+    <select class="form-control" placeholder="deductionId"
+     [(ngModel)]="employeeDeduction.deduction" name="deductionId">
+      <option *ngFor="let deduction of (deductions|async)" [ngValue]="deduction">{{deduction.deductionName}}
+      </option>
+
+    </select>
+  </div>
+
+
+
+
+    <div class="form-group">
+      <label> {{'Amount_Percentage_Months_to_be_Finished'|translate}}</label>
+      <input type="text" class="form-control"
+       id="amount" [(ngModel)]="employeeDeduction.amount"
+        name="emailId">
+    </div>
+
+
+    <button class="btn btn-success" type="submit">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

@@ -1,0 +1,14 @@
+<div class="col-md-6 offset-md-3">
+  <h3> {{'Update_Level'|translate}} </h3>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label> {{'level_Name'|translate}}</label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="level.levelName" name="levelName">
+    </div>
+
+
+    <button class="btn btn-success" type="submit">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

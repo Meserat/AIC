@@ -1,0 +1,22 @@
+<div class="col-md-6 offset-md-3">
+  <h3> {{'Update_Directorate'|translate}}</h3>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label> {{'Directorate_Name'|translate}} </label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="directorate.directorateName" name="firstName">
+    </div>
+  <div>
+    <label for="gross" class="text-center">{{'Select_Cluster'|translate}} </label>
+
+    <select class="form-control" placeholder="directorateID" [(ngModel)]="directorate.section" name="directorateID">
+      <option *ngFor="let section of (sections)" [ngValue]="section">
+        {{section.sectionName}} </option>
+
+    </select>
+  </div>
+
+    <button class="btn btn-success" type="submit">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

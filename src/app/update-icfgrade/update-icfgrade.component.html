@@ -1,0 +1,13 @@
+<div class="col-md-6 offset-md-3">
+  <h3> {{'Update_ACFGrade'|translate}} </h3>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label> {{'AcfGrade_Name'|translate}}</label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="icfgrade.icfGradeName" name="icfGradeName">
+    </div>
+
+    <button class="btn btn-success" type="submit">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

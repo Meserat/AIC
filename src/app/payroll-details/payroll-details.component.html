@@ -1,0 +1,66 @@
+
+<div class="jumbotron mt-0" id="pdfTable" #pdfTable>
+  <div class="center-block">
+    <div class="col-md-auto image-container">
+      <img src="assets/dist/img/aic.png" style="height: 60px;width: 60px;" alt="AIC Logo"
+
+        class="brand-image img-circle elevation-3 center-block">
+    </div>
+      <h3 class="text-center mt-2"> {{'Artificial_Intelligence_Centre'|translate}}</h3>
+
+  </div>
+
+  <div class="container">
+    <br/>
+    <h3>{{'Name'|translate}}: {{payrollDetail.firstName}} {{payrollDetail.lastName}}</h3>
+    <br/>
+    <div class="row">
+            <!-- Allowances -->
+            <div class="col-md-6 col-xs-6 col-md-6">
+                <h5>{{'Allowances'|translate}}</h5>
+              <!-- <p>{{'Income_Tax'|translate}}:{{payrollDetail.incomeTax| number:'1.2-2'}}</p> -->
+                <p>
+                    {{'Total_Salary'|translate}}:{{payrollDetail.totalSalary | number: '1.2-2'}}
+                </p>
+              <div *ngFor="let allowance of allowances">
+                <div *ngIf="payrollDetail.Allowance.get(allowance.allowanceName) !=null;
+                                    then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>{{allowance.allowanceName}}:{{payrollDetail.Allowance.get(allowance.allowanceName)}}
+                </ng-template>
+                <ng-template #elseBlock></ng-template>
+              </div>
+              <p> {{'Total_Allowance'|translate}}: {{payrollDetail.totalAllowance | number : '1.2-2'}}</p>
+              <p>
+                {{'Gross_Salary'|translate}}:{{payrollDetail.grossSalary | number: '1.2-2'}}
+              </p>
+            </div>
+        <!-- Deduction -->
+        <div class="col-md-6 col-xs-6 col-md-6">
+          <h5>{{'Deductions'|translate}}</h5>
+          <div *ngFor="let deduction of deductions">
+            <div *ngIf="payrollDetail.Deduction.get(deduction.deductionName) !=null;
+                              then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>{{deduction.deductionName}}:{{calculateDeduction(monthlyPayroll.totalSalary,
+              payrollDetail.Deduction.get(deduction.deductionName), deduction.deductionType) | number : '1.2-2'}}</ng-template>
+            <ng-template #elseBlock></ng-template>
+          </div>
+          <p> {{'Pension'|translate}}: {{payrollDetail.pension | number : '1.2-2'}}</p>
+          <p> {{'Total_Income_Tax'|translate}}: {{payrollDetail.incomeTax | number : '1.2-2'}}</p>
+          <p> {{'Total_Deduction'|translate}}: {{payrollDetail.totalDeduction | number : '1.2-2'}}</p>
+        </div>
+        <div class="col-md-6 col-xs-6 col-md-6">
+          <p  class="font-weight-bold" aria-hidden="true">{{'Net_Salary'|translate}}:{{payrollDetail.netSalary | number: '1.2-2'}}</p>
+        </div>
+      <div>
+    </div>
+    <br/>
+    <br/>
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary float-right" (click)="printComponent('pdfTable')">{{'Print'|translate}}</button>
+
+
+
+
+

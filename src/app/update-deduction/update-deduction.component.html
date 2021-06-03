@@ -1,0 +1,22 @@
+<div class="col-md-6 offset-md-3">
+  <h3> {{'Update_Deduction'|translate}} </h3>
+  <form (ngSubmit)="onSubmit()">
+
+
+    <div class="form-group">
+      <label> {{'Deduction_Name'|translate}}</label>
+      <input type="text" class="form-control" id="deductioname" [(ngModel)]="deduction.deductionName" name="deduction">
+    </div>
+    <div class="form-group">
+      <label for="Type" class="text-center"> {{'Deduction_Type'|translate}}</label>
+      <select name="deduType" id="deduType" class="form-control" [(ngModel)]="deduction.deductionType"
+        required="required">
+        <option value="0">{{'Amount'|translate}}</option>
+        <option value="1">{{'Percentage'|translate}}</option>
+      <option value="2">{{'Month'|translate}}</option>
+      </select>
+
+    </div> <button class="btn btn-success" type="submit">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

@@ -1,0 +1,41 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h1 class="text-center" style="color:black; font-style: italic; font-family: 'Times New Roman', Times, serif;" >
+        Change your  password</h1>
+      <p class="lead" style="color:black; font-style: italic; font-family: 'Times New Roman', Times, serif;" >
+        {{'Use_the_form_below_to_change_your_password,Your_must_change_your_password_before_login'|translate}}
+      </p>
+      <hr class="my-2">
+      <form (ngSubmit)="onSubmit()" class=" needs-validation" novalidate>
+
+        <div class="row">
+
+
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="pass" class="text-center"> {{'Enter_new_password'|translate}}</label>
+              <input type="password" id="password" class="form-control" [(ngModel)]="user.userPassword" name="gross"
+                placeholder="password" aria-describedby="helpId" required>
+            </div>
+
+            <div class="form-group">
+              <!-- <label for="basic salary" class="text-center"> Have you noticed password you have entered?</label>
+
+              <select class="form-control" placeholder="status" [(ngModel)]="user.status" name="status">
+                <option value="false">-- YES--</option>
+                <option value="false">-- no --</option>
+              </select> -->
+
+            </div>
+            <button type="submit" class="btn btn-primary">{{'Change'|translate}}</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  </div>

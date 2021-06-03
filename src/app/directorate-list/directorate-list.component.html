@@ -1,0 +1,24 @@
+<h2> {{'Directorate_list'|translate}}</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th> {{'Directorate_Name'|translate}} </th>
+      <th> {{'Directorate_Cluster'|translate}}</th>
+
+      <th> Actions </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let directorate of directorates">
+
+      <td> {{ directorate.directorateName }} </td>
+     <td> {{ directorate.section.sectionName}} </td>
+      <td>
+        <button (click)="updateDirectorate(directorate.directorateId)" class="btn btn-info"> {{'Update'|translate}}</button>
+        <!-- <button (click)="deleteDirectorate(directorate.directorateId)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
+        -->
+      </td>
+    </tr>
+  </tbody>
+</table>

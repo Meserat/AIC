@@ -1,0 +1,126 @@
+
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">{{'Employee_Allowance'|translate}}</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/employee-allowance-list">{{'Home'|translate}}</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container">
+<div class="row justify-content-center">
+<!-- <div class="col-md-4 col-xs-4 col-sm-4">
+
+
+  </div> -->
+  <div class="col-md-3 col-xs-3 col-sm-3">
+    <select class="form-control" placeholder="employeeId" [(ngModel)]="employeeAllowance.allowance"
+    name="employeeId">
+      <option *ngFor="let allowance of allowances" [ngValue]="allowance" required>
+        {{allowance.allowanceName}}
+      </option>
+
+    </select>
+  </div>
+
+  <div class="col-md-3 col-xs-3 col-sm-3">
+
+    <input type="text" name="amount" id="inputamount" class="form-control" [(ngModel)]="employeeAllowance.amount" placeholder="enter amount" required="required" pattern="" title="">
+
+  </div>
+
+  <div class="col-md-3 col-xs-3 col-sm-3">
+
+
+    <button type="button" (click)="saveManyEmployeeAllowance()" class="btn btn-primary">{{'Add'|translate}}+</button>
+
+
+  </div>
+
+    <div class="col-md-3 col-xs-3 col-sm-3">
+<button type="button" (click)="deleteManyEmployeeAllowance()" class="btn btn-danger" style="margin-left: 10;">
+  {{'Delete'|translate}}</button>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+
+  <div class="content-body">
+    <div class="container-fluid">
+
+
+<table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger">
+  <thead>
+    <tr>
+      <th>
+        <div class="checkbox">
+        <label>
+          <input type="checkbox" [checked]="allcheckbox" (change)="allcheckbox=!allcheckbox;allcheckboxStatus=!allcheckboxStatus;removeOrAddAll()"> Select
+        </label>
+        </div></th>
+      <th>{{'Employee_Name'|translate}}</th>
+      <th *ngFor="let allowance of allowances"> {{allowance.allowanceName}} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let allowanceList of allowanceLists;index as i">
+          <td>
+<!-- get the idea if checked -->
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"  [checked]= "checkboxStatus.get(allowanceList.employeeId)"  (change)="checkboxStatus.set(allowanceList.employeeId,!checkboxStatus.get(allowanceList.employeeId));removeOrAddEmployee(allowanceList.employeeId)">
+              </label>
+            </div>
+          </td>
+      <td> {{ allowanceList.firstName }}  {{ allowanceList.lastName }} </td>
+      <td *ngFor="let allowance of allowances">
+        <div *ngIf="allowanceLists[i].Allowance.get(allowance.allowanceName) !=null;
+                    then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>{{allowanceLists[i].Allowance.get(allowance.allowanceName)}}</ng-template>
+        <ng-template #elseBlock>{{"-"}}</ng-template>
+      </td>
+       <!-- <td>
+       <button (click)="updateEmployeeAllowance(employeeAllowance.employeeAllowanceId )" class="btn btn-info"> Update</button>
+       <button (click)="deleteEmployeeAllowance(employeeAllowance.employeeAllowanceId)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
+
+       </td>
+    <td>
+      <button class="btn btn-danger" title="Delete" (click)="open(content,employeeAllowance.employeeAllowanceId)" href="javascript:void(0);">Delete</button>
+    </td>  -->
+</tr>
+  </tbody>
+</table>
+</div>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><span>{{'Confirmation'|translate}}</span></h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'Confirm_Delete'|translate}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">{{'Cancel'|translate}}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('yes')">{{'Yes'|translate}}</button>
+  </div>
+</ng-template>
+

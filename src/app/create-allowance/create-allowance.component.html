@@ -1,0 +1,17 @@
+
+
+<div class="col-md-6 offset-md-3 mb-5">
+  <h3> {{'Create_Allowance'|translate}}</h3>
+<form (ngSubmit)="onSubmit()" #createEmployeeform="ngForm" novalidate>
+
+    <div class="form-group">
+      <label> {{'Allowance_Name'|translate}}</label>
+      <input type="text" class="form-control"
+      id="allowancename" [(ngModel)]="allowance.allowanceName"
+
+      name="lastName" required>
+    </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!createEmployeeform.valid">{{'Submit'|translate}}</button>
+
+  </form>
+</div>

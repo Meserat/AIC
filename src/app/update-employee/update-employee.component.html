@@ -1,0 +1,238 @@
+<div class="content-header">
+  <div class="container-fluid">
+
+
+    <h3 class="text-center">{{'Update_Employee'|translate}}</h3>
+
+    <form (ngSubmit)="onSubmit()" #createEmployeeform="ngForm" novalidate class="mb-5">
+      <div class="row">
+        <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="firstName">{{'First_Name'|translate}}</label>
+          <input type="text" id="firstName" class="form-control" [(ngModel)]="employee.employeeFirstName" name="firstName"
+            class="form-control" required #firstName="ngModel" placeholder="First Name">
+        </div>
+
+          <!-- firstName Validation -->
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+
+            <div *ngIf="firstName.errors.required">
+              {{'First_Name_is_required'|translate}}
+            </div>
+
+          </div>
+
+          <!-- end of firstName validation -->
+
+
+        <div class="form-group">
+          <label for="lastName" class="text-center">{{'Last_Name'|translate}}</label>
+          <input type="text" id="lastName" class="form-control" [(ngModel)]="employee.employeeLastName" name="lastname"
+            class="form-control" required #lastName="ngModel" placeholder="LastName">
+        </div>
+
+        <!-- lastName Validation -->
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+
+          <div *ngIf="lastName.errors.required">
+            {{'Last_name_is_required'|translate}}
+          </div>
+
+        </div>
+
+        <!-- end of lastName validation -->
+
+
+           <!-- end of lastName validation -->
+
+
+      <div class="form-group">
+        <label for="my-input">{{'Account_Number'|translate}}</label>
+        <input
+         id="account"  name="account" class="form-control" required minlength="13" maxlength="15" pattern="^[0-9]*$"
+          [(ngModel)]="employee.employeeAccountNumber" #account="ngModel"
+          placeholder="Account Number"
+          >
+
+      </div>
+
+
+      <!-- Account Number Validation -->
+<div *ngIf="account.invalid && (account.dirty || account.touched)" class="alert alert-danger">
+
+  <div *ngIf="account.errors.required">
+{{'account_number_is_required'|translate}}
+  </div>
+  <div *ngIf="account.errors.minlength">
+
+    {{'account_number_must_be_at_least_13_characters_long'|translate}}
+  </div>
+  <div *ngIf="account.errors.maxlength">
+    {{'account_number_cannot_be_more_than_15_characters_long'|translate}}
+  </div>
+  <div *ngIf="account.errors.pattern">
+    {{'only_number_is_allowed'|translate}}
+  </div>
+
+</div>
+
+      <!-- End of account number Validation -->
+
+
+        <div class="form-group">
+          <label for="my-input">{{'Phone_Number'|translate}}</label>
+          <input id="phone" name="phone" class="form-control" required minlength="10" maxlength="10"
+            [(ngModel)]="employee.employeePhoneNumber" #phone="ngModel" placeholder="Phone Number" pattern="^[0-9]*$">
+
+        </div>
+
+<div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+
+  <div *ngIf="phone.errors.required">
+    {{'phone_is_required'|translate}}
+  </div>
+  <div *ngIf="phone.errors.minlength">
+    {{'Phone_must_be_at_least_10_characters_long'|translate}}
+  </div>
+  <div *ngIf="phone.errors.maxlength">
+    {{'Phone_must_be_equal_to_10_characters_long'|translate}}
+  </div>
+  <div *ngIf="phone.errors.pattern">
+    {{'only_number_is_allowed'|translate}}
+  </div>
+
+
+</div>
+
+<div class="form-group">
+  <label for="email" class="text-center"> {{'Email'|translate}}</label>
+  <input type="email" id="email" class="form-control" [(ngModel)]="employee.employeeEmail" #email1="ngModel"
+    name="email" placeholder="Email">
+</div>
+
+
+        <div class="form-group">
+          <label for="Directorate" class="text-center"> {{'Directorate'|translate}}</label>
+          <select class="form-control" placeholder="directorId" [(ngModel)]="employee.employeeDirectorate" name="directorateId">
+            <option *ngFor="let directorate of directorates" [ngValue]="directorate">{{directorate.directorateName}}
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <!-- Section -->
+        <div class="col-md-6">
+
+
+        <div class="form-group">
+          <label for="icfGrade" class="text-center"> {{'ACF_Grade'|translate}}</label>
+
+          <select class="form-control" placeholder="iCFGradeId" [(ngModel)]="employeeICFGrade" name="salaryId">
+            <option *ngFor="let icfGrade of icfGrades" [ngValue]="icfGrade.icfgradeName">{{icfGrade.icfgradeName}}</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <label for="level" class="text-center"> {{'Level'|translate}} </label>
+
+          <select class="form-control" placeholder="level" [(ngModel)]="employeeLevel" name="level">
+            <option *ngFor="let level of (levels|async)" [ngValue]="level.levelName">
+              <!-- {{salary.section.sectionName}}
+              {{salary.level.levelName}}
+               -->
+              {{level.levelName}}
+            </option>
+
+          </select>
+
+        </div>
+        <div class="form-group">
+          <label for="position salary" class="text-center">{{'Position_Salary'|translate}}</label>
+          <select class="form-control" placeholder="positionid" [(ngModel)]="employee.position" name="positionId">
+            <option *ngFor="let position of (positions|async)" [ngValue]="position">{{position.positionName}}
+              {{position.positionSalary}}</option>
+
+          </select>
+
+        </div>
+        <!-- <div class="form-group">
+          <label for="date" class="text-center"> {{'time'|translate}} </label>
+
+          <div class="input-group date" id="date" data-target-input="nearest">
+
+            <input type="date" class="form-control datetimepicker-input" name="time" [(ngModel)]="employee.date">
+            __
+          </div>
+
+        </div> -->
+
+        <div class="form-group">
+          <label for="employeeType" class="text-center"> {{'Employee_Type'|translate}}</label>
+
+          <select class="form-control" placeholder="Job Type" [(ngModel)]="employee.employeeType" name="employeeType">
+            <option value="መደበኛ">{{'Regular'|translate}}</option>
+            <option value="ኮንትራት">{{'Contrat'|translate}}</option>
+            <option value="የትርፍ ጊዜ">{{'Part_Time'|translate}}</option>
+          </select>
+
+        </div>
+
+
+          <div class="form-group">
+                    <label for="basic salary" class="text-center"> {{'Status'|translate}}</label>
+
+                    <select class="form-control" placeholder="salary" [(ngModel)]="employee.status" name="status">
+                      <option value="true">{{'Active'|translate}}</option>
+                      <option value="false">{{'Inactive'|translate}}</option>
+                    </select>
+                  </div>
+          <!-- email validation end -->
+          <button type="submit" class="btn btn-primary" [disabled]="!createEmployeeform.valid">{{'Submit'|translate}}</button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

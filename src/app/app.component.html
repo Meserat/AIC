@@ -1,0 +1,88 @@
+
+
+<div class="wrapper">
+
+
+<div  *ngIf="role!=null ">
+
+<app-appheader>
+
+
+</app-appheader>
+</div>
+  <!-- Main Sidebar Container -->
+  <div *ngIf="role!=null">
+    <app-appmenu>
+
+
+    </app-appmenu>
+
+  </div>
+    <!-- /.sidebar -->
+
+  <div class="content-wrapper">
+    <div style="float: right;">
+      <span class="form-inline" >
+        <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)" style="float: right;">
+          <option *ngFor="let language of translate.getLangs()" [value]="language"
+            [selected]="language === translate.currentLang">
+            {{ language }}
+          </option>
+        </select>
+      </span>
+
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+    <!-- /.content-wrapper -->
+  <footer class="main-footer" >
+    <strong>Copyright &copy; 2021. AIC</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 0.0.0
+    </div>
+  </footer>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

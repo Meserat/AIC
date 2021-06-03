@@ -1,0 +1,421 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4 mt-50" style="margin-top: 72px;" *ngIf="role != null" >
+
+  <!-- <a href="#" class="brand-link">
+    <img src="assets/dist/img/aic.png" alt="AIC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">
+      <h2> AIC</h2>
+    </span>
+  </a> -->
+
+  <div
+    class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
+    <div class="os-resize-observer-host observed">
+      <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+    </div>
+    <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
+      <div class="os-resize-observer"></div>
+    </div>
+    <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 607px;"></div>
+    <div class="os-padding">
+      <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
+        <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+
+
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+
+              <li class="nav-header">{{'User_Menu'|translate}}</li>
+
+              <div *ngIf="role=='ADMIN'; then blockAdmin"> </div>
+              <div *ngIf="role=='HR'; then blockHr"> </div>
+              <div *ngIf="role=='ACCOUNTANT'; then blockAccountant"> </div>
+
+              <ng-template #blockAdmin>
+                <li class="nav-item">
+                  <a href="/admin" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'User'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/admin" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'User_List'|translate}} </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/add-user" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_new_user'|translate}}</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ng-template>
+
+
+              <ng-template #blockHr>
+                <!-- <li class="nav-item">
+                  <a href="/hroffice" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                </li> -->
+
+                <li class="nav-item">
+                  <a href="/hroffice" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Employees'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/hroffice" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'Employees_list'|translate}}</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/add-employee" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p> {{'Add_new_employees'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-header">{{'Setting'|translate}}</li>
+
+                <li class="nav-item">
+                  <a href="/position" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Position'|translate}}
+                    <!-- position -->
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="position" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p> {{'Position_list'|translate}} </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-position" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_new_position'|translate}}</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="/section" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Cluster'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/section" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p> {{'Cluster_List'|translate}} </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-section" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_new_section'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Directorate -->
+                <li class="nav-item">
+                  <a href="/directorate-list" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Employee_directorate'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/directorate-list" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'Directorate_list'|translate}} </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-directorate" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_new_directorate'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+<!-- Directorate -->
+<li class="nav-item">
+  <a href="/icfgrade-list" class="nav-link">
+    <i class="nav-icon fas fa-edit"></i>
+    <p>
+      {{'ACF_Grade'|translate}}
+      <i class="fas fa-angle-left right"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="/icfgrade-list" class="nav-link">
+        <i class="nav-icon fas fa-book"></i>
+        <p>{{'ACF_Grade_List'|translate}} </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/create-icfgrade" class="nav-link">
+        <i class="nav-icon far fa-plus-square"></i>
+        <p>{{'Create_new_ACF_Grade'|translate}}</p>
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+                <li class="nav-item">
+                  <a href="/level" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Employee_Level'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/level" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p> {{'Employee_Level_List'|translate}}</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-level" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Create_Level'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                {{'Salary_Group'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="salary-list" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'Salary_lists'|translate}} </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="create-salary" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_Salary'|translate}}</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-header">{{'View_history'|translate}} </li>
+                <li class="nav-item">
+                  <a href="/employee-history" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'History' | translate }}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                </li>
+
+
+              </ng-template>
+
+
+              <ng-template #blockAccountant>
+
+                <li class="nav-item">
+                  <a href="/employee-allowance-list" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Employee_Allowance'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/employee-allowance-list" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'Employee_Allowance_List'|translate}}</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/employee-allowance-list" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p> {{'Add_Employee_Allowance'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item">
+                  <a href="/employee-deduction-list" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                      {{'Employee_Deductions'|translate}}
+
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/employee-deduction-list" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p> {{'Employee_Deductions_List'|translate}}</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/employee-deduction-list" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_New_Employee_Deduction'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-header">{{'Setting'|translate}}</li>
+                <li class="nav-item">
+                  <a href="/alllow" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Allowances'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/allow" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'Allowances_List'|translate}} </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-allow" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_New_Allowance'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item">
+                  <a href="/dedu" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Deductions'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/dedu" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{'Deductions_List'|translate}}</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-dedu" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>{{'Add_New_Deductions'|translate}} </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item">
+                  <a href="/income" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                  {{'Income_Tax'|translate}}
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/income" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+
+                        <p>{{'Income_Tax_List'|translate}}</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/create-income" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>  {{'Add_New_Income_Tax'|translate}}</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-header">{{'View'|translate}}</li>
+                <li class="nav-item">
+                  <a href="/month" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                    {{'Payroll'|translate}}
+
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/payroll-history" class="nav-link">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                   {{'Payroll_History'|translate}}
+
+                    </p>
+                  </a>
+                </li>
+              </ng-template>
+
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+      <div class="os-scrollbar-track">
+        <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
+      </div>
+    </div>
+    <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden">
+      <div class="os-scrollbar-track">
+        <div class="os-scrollbar-handle" style="height: 44.8047%; transform: translate(0px, 0px);"></div>
+      </div>
+    </div>
+    <div class="os-scrollbar-corner"></div>
+  </div>
+</aside>
