@@ -1,0 +1,144 @@
+
+<body class="hold-transition login-page">
+  
+<div class="content-body">
+  <div class="container-fluid">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>AIC</b>_PayrollSystem</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Sign in</p>
+       
+      <form class="form-signin" (ngSubmit)="onSubmit()" #loginform="ngForm" novalidate >
+
+    <p *ngIf="isCorrect==true" class="text-center">
+    
+      <span class="text-danger">Wrong Password or userName</span>
+      <div class="input-group mb-3">
+          <input type="email"     [(ngModel)]="logins.username" id="inputEmail"
+          class="form-control"
+           size="lg" placeholder="username"
+           [ngModelOptions]="{standalone: true}"
+           required autofocus>
+           <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" [(ngModel)]="logins.password"
+          id="inputPassword"
+          class="form-control" placeholder="Password"
+          [ngModelOptions]="{standalone: true}" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-6">
+            <button type="submit" class="w-80 btn btn-lg btn-primary" [disabled]="!loginform.valid">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+    
+       
+      </form>
+
+      <p class="mb-1">
+        forgot password contact Admin!!
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+</div>
+</div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+
+
+  <form class="form-signin" (ngSubmit)="onSubmit()" #loginform="ngForm" novalidate >
+    <div class="text-center mb-4">
+      <img class="mb-4" src="../../assets/Images/Aiclogo.jpg" alt="Logo" width="80" height="60">
+    </div>
+<p *ngIf="isCorrect==true" class="text-center">
+
+  <span class="text-danger">Wrong Password or userName</span>
+</p><label for="inputEmail">UserName</label>
+    <div class="form-label-group">
+      <input type="email"     [(ngModel)]="logins.username" id="inputEmail"
+      class="form-control"
+       size="lg" placeholder="username"
+       [ngModelOptions]="{standalone: true}"
+       required autofocus>
+      
+    </div>
+    <label for="inputPassword">Password</label>
+    <div class="form-label-group">
+      <input type="password" [(ngModel)]="logins.password"
+      id="inputPassword"
+      class="form-control" placeholder="Password"
+      [ngModelOptions]="{standalone: true}" required>
+      
+    </div>
+
+    <button type="submit" class="w-100 btn btn-lg btn-primary" [disabled]="!loginform.valid">Sign In</button> <p class="mt-5 mb-3 text-muted text-center">&copy; 2021</p>
+  </form>
+</body>
+
+</html>
+ -->
