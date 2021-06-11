@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {PositionService} from '../position.service'
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../token-storage.service';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-position-list',
   templateUrl: './position-list.component.html',
@@ -11,6 +12,9 @@ import { TokenStorageService } from '../token-storage.service';
 export class PositionListComponent implements OnInit {
 
    positions: Position[];
+   dtOptions: any = {};
+  dtTrigger:Subject<any>=new Subject()
+
 
   constructor(private positionService: PositionService,
     private tokenStorage:TokenStorageService,
@@ -21,6 +25,57 @@ export class PositionListComponent implements OnInit {
       this.router.navigate(['/']);
     }
     else{
+this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 4,
+      processing: true,
+      bDestory:true,
+      dom: 'lBfrtip',
+
+
+        buttons: [
+
+
+          {
+            extend:'csv',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+        messageTop:"Payroll report, "+ new Date(),
+        exportOptions: {
+           columns:[':visible:not(:last-child)']
+                }
+          },
+          {
+            extend:'excel',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+            messageTop:"Employee Information report, "+ new Date(),
+            exportOptions: {
+                  columns:[':visible:not(:last-child)']
+                }
+          },
+            {
+            extend:'print',
+            charset: 'utf-8',
+            bom: true,
+
+            title:"Artifical Intelligence Center Employee list",
+            messageTop:"Employee Information report, "+ new Date(),
+
+            exportOptions: {
+               columns:[':visible:not(:last-child)']
+                }
+          },
+
+               'colvis',
+               [ 'colvisRestore' ]
+        ]
+
+
+    };
+
         this.getPositions();
     }
 
@@ -29,6 +84,7 @@ export class PositionListComponent implements OnInit {
   private getPositions(){
     this.positionService.getPositionList().subscribe(data => {
       this.positions = data;
+        this.dtTrigger.next();
     });
   }
 

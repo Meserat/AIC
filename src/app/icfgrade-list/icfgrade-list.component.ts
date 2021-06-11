@@ -4,6 +4,7 @@ import { ICFGrade } from '../icfgrade';
 import { ICFGradeService } from '../icfgrade.service';
 import { TokenStorageService } from '../token-storage.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-icfgrade-list',
@@ -13,6 +14,8 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
 export class IcfgradeListComponent implements OnInit {
 icfgrades: ICFGrade[];
 closeResult: string;
+ dtOptions: any = {};
+  dtTrigger:Subject<any>=new Subject()
 
   constructor(private icfgradeService: ICFGradeService,
     private tokenStorage:TokenStorageService,
@@ -24,6 +27,56 @@ closeResult: string;
       this.router.navigate(['/']);
     }
     else{
+       this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 4,
+      processing: true,
+      bDestory:true,
+      dom: 'lBfrtip',
+
+
+        buttons: [
+
+
+          {
+            extend:'csv',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+        messageTop:"Payroll report, "+ new Date(),
+        exportOptions: {
+           columns:[':visible:not(:last-child)']
+                }
+          },
+          {
+            extend:'excel',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+            messageTop:"Employee Information report, "+ new Date(),
+            exportOptions: {
+                  columns:[':visible:not(:last-child)']
+                }
+          },
+            {
+            extend:'print',
+            charset: 'utf-8',
+            bom: true,
+
+            title:"Artifical Intelligence Center Employee list",
+            messageTop:"Employee Information report, "+ new Date(),
+
+            exportOptions: {
+               columns:[':visible:not(:last-child)']
+                }
+          },
+
+               'colvis',
+               [ 'colvisRestore' ]
+        ]
+
+
+    };
           this.getIcfGrades();
     }
   }
@@ -32,6 +85,7 @@ closeResult: string;
     this.icfgradeService.getICFGradeList().subscribe(data => {
       this.icfgrades = data;
       console.log(this.icfgrades)
+      this.dtTrigger.next();
     });
   }
 

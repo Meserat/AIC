@@ -85,13 +85,7 @@ title = 'angulardatatables';
             footer:true,
              orientation: 'landscape',
 
-            customize:function(doc){
-              doc.content.splice(1,0,{
-                margin:[0,0,0,12],
-                alignment:'center',
-                image:"data:image/png; base64"
-              })
-             },
+
 
 
            exportOptions:{
@@ -105,7 +99,8 @@ title = 'angulardatatables';
 
         ]
 
-    };   this.getSalary();
+    };
+    this.getSalary();
 
     }
 

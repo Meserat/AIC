@@ -15,7 +15,7 @@
               [(ngModel)]="employee.employeeFirstName"
                name="firstName" class="form-control" required
                 #firstName="ngModel"
-                placeholder="First Name"
+                placeholder="{{'First_Name'|translate}}"
              >
       </div>
 
@@ -39,7 +39,7 @@
         [(ngModel)]="employee.employeeLastName"
            name="lastname" class="form-control" required
             #lastName="ngModel"
-            placeholder="LastName"
+            placeholder="{{'Last_Name'|translate}}"
           >
       </div>
 
@@ -60,7 +60,7 @@
         <input
          id="account"  name="account" class="form-control" required minlength="13" maxlength="15" pattern="^[0-9]*$"
           [(ngModel)]="employee.employeeAccountNumber" #account="ngModel"
-          placeholder="Account Number"
+          placeholder="{{'Account_Number'|translate}}"
           >
 
       </div>
@@ -101,7 +101,7 @@
   <input id="phone"  name="phone" class="form-control" required minlength="10" maxlength="10"
     [(ngModel)]="employee.employeePhoneNumber" #phone="ngModel"
 
-    placeholder="Phone Number" pattern="^[0-9]*$"  >
+    placeholder="{{'Phone_Number'|translate}}" pattern="^[0-9]*$"  >
 
 </div>
 <p *ngIf="isPhoneDuplicate==true">
@@ -137,7 +137,7 @@
 <div class="form-group">
   <label for="email" class="text-center"> {{'Email'|translate}}</label>
   <input type="email" id="email" class="form-control" [(ngModel)]="employee.employeeEmail" #email1="ngModel"
-    name="email" placeholder="Email" >
+    name="email" placeholder=" {{'Email'|translate}}" >
 </div>
 <p *ngIf="isEmailDuplicate==true">
 
@@ -224,7 +224,7 @@
   <div class="input-group date" id="date" data-target-input="nearest">
 
     <input type="date" class="form-control datetimepicker-input" name="time" [(ngModel)]="employee.date">
-    __
+
      </div>
 
 </div>

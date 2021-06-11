@@ -9,14 +9,15 @@
 
       </a>
       <span class="brand-text font-weight-light">
-        <h4 style="color: white; font-style: italic; font-family: 'Times New Roman', Times, serif;"> {{'Site_title' | translate }} </h4>
+        <h4 style="color: white; font-style: italic; font-family: 'Times New Roman', Times, serif; margin-top: 4px;"> {{'Site_title' | translate }} </h4>
       </span>
   </ul>
   <ul class="navbar-nav ml-auto" *ngIf="role!=null">
     <app-messages-dropdown-menu></app-messages-dropdown-menu>
     <app-notifications-dropdown-menu *ngIf="isAccountant()"></app-notifications-dropdown-menu>
     <li class="nav-item">
-      <span class="nav-link"  role="button"><p style="color:white">{{user}}</p></span>
+      <span class="nav-link"  role="button"><p style="color:white">{{user}} as {{role}}</p></span>
+
     </li>
     <li class="nav-item">
       <span (click) ="clearMySession()" class="nav-link"  role="button"><p style="color:white">{{'Logout'|translate}}</p></span>

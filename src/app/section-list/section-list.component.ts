@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SectionService } from '../section.service'
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { Subject } from 'rxjs';
 
 
 
@@ -16,6 +17,8 @@ export class SectionListComponent implements OnInit {
 
  sections: Section[];
  closeResult: string;
+    dtOptions: any = {};
+  dtTrigger:Subject<any>=new Subject()
 
   constructor(private sectionService: SectionService,
     private tokenStorage:TokenStorageService,
@@ -27,6 +30,56 @@ export class SectionListComponent implements OnInit {
       this.router.navigate(['/']);
     }
     else{
+      this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 4,
+      processing: true,
+      bDestory:true,
+      dom: 'lBfrtip',
+
+
+        buttons: [
+
+
+          {
+            extend:'csv',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+        messageTop:"Payroll report, "+ new Date(),
+        exportOptions: {
+           columns:[':visible:not(:last-child)']
+                }
+          },
+          {
+            extend:'excel',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+            messageTop:"Employee Information report, "+ new Date(),
+            exportOptions: {
+                  columns:[':visible:not(:last-child)']
+                }
+          },
+            {
+            extend:'print',
+            charset: 'utf-8',
+            bom: true,
+
+            title:"Artifical Intelligence Center Employee list",
+            messageTop:"Employee Information report, "+ new Date(),
+
+            exportOptions: {
+               columns:[':visible:not(:last-child)']
+                }
+          },
+
+               'colvis',
+               [ 'colvisRestore' ]
+        ]
+
+
+    };
           this.getSections();
     }
   }
@@ -34,6 +87,7 @@ export class SectionListComponent implements OnInit {
   private getSections(){
     this.sectionService.getSectionList().subscribe(data => {
       this.sections = data;
+       this.dtTrigger.next();
     });
   }
 
