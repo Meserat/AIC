@@ -25,7 +25,7 @@ export class DeductionListComponent implements OnInit {
   private getDeductions(){
     this.deductionService.getDeductionsList().subscribe(data => {
       this.deductions = data;
-      this.dtTrigger.next();
+       this.dtTrigger.next();
     });
   }
    constructor(private deductionService: DeductionService,private modalService: NgbModal,
@@ -34,19 +34,62 @@ export class DeductionListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    if(!this.tokenStorage.isLogedIn("ACCOUNTANT")){
-      this.router.navigate(['/']);
-    }
-    else{
+
+
 
   this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 6,
+      pageLength: 12,
       processing: true,
-        };
+      bDestory:true,
+      dom: 'lBfrtip',
+
+
+        buttons: [
+
+
+          {
+            extend:'csv',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+        messageTop:"Payroll report, "+ new Date(),
+        exportOptions: {
+       columns:[':visible:not(:last-child)']
+                }
+          },
+          {
+            extend:'excel',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+            messageTop:"Employee Information report, "+ new Date(),
+            exportOptions: {
+             columns:[':visible:not(:last-child)']
+                }
+          },
+            {
+            extend:'print',
+            charset: 'utf-8',
+            bom: true,
+
+            title:"Artifical Intelligence Center Employee list",
+            messageTop:"Employee Information report, "+ new Date(),
+
+            exportOptions: {
+              columns:[':visible:not(:last-child)']
+                }
+          },
+
+               'colvis',
+               [ 'colvisRestore' ]
+        ]
+
+
+    };
 
     this.getDeductions();
-  }    }
+    }
 
 
 

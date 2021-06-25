@@ -16,14 +16,16 @@
 <div class="content-body">
   <div class="container-fluid">
 
-    <table class="table table-striped table-bordered table-sm row-border hover mb-5" datatable [dtOptions]="dtOptions"
-      [dtTrigger]="dtTrigger">
+  <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger">
       <thead class="thead-light">
         <tr>
           <th>{{'Deduction_Name'|translate}}</th>
           <th>{{'Deduction_Type'|translate}}</th>
-          <th>Action</th>
-          <th></th>
+                <th>Action</th>
+                <th> </th>
+
+
 
         </tr>
       </thead>
@@ -32,14 +34,7 @@
           <td>{{deduction.deductionName}}</td>
           <td>{{deduction.deductionType}}</td>
           <td><button (click)="updateDeduction(deduction.deductionId)" class="btn btn-info"> {{'Update'|translate}}</button></td>
-          <!-- <td><button (click)="deleteDeduction(deduction.deductionId)"
-          class="btn btn-danger"
-             mwlConfirmationPopover
-            [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
-            (cancel)="cancelClicked = true"
-          > delete</button></td>
 
-      -->
           <td>
             <button class=" btn btn-danger" title="Delete" (click)="open(content,deduction.deductionId)"
               href="javascript:void(0);">{{'Delete'|translate}}</button>

@@ -33,43 +33,57 @@ export class AllowanceListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.dtOptions = {
+   this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 6,
+      pageLength: 12,
       processing: true,
-      // dom: 'Bfrtip',
-      //   buttons: [
-      //     {
-      //       extend:'copy',
-      //       exportOptions:{
-      //         columns:[0,1,2,3,4]
+      bDestory:true,
+      dom: 'lBfrtip',
 
-      //       }
-      //     },
-      //     {
-      //       extend:'csv',
-      //       exportOptions:{
-      //         columns:[0,1,2,3,4]
 
-      //       }
-      //     },
-      //     {
-      //       extend:'excel',
-      //       exportOptions:{
-      //         columns:[0,1,2,3,4]
+        buttons: [
 
-      //       }
-      //     },
-      //       {
-      //       extend:'print',
-      //       exportOptions:{
-      //         columns:[0,1,2,3,4]
 
-      //       }
-      //     }
+          {
+            extend:'csv',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+        messageTop:"Payroll report, "+ new Date(),
+        exportOptions: {
+       columns:[':visible:not(:last-child)']
+                }
+          },
+          {
+            extend:'excel',
+             charset: 'utf-8',
+            bom: true,
+            title:"Artifical Intelligence Centre Employee List",
+            messageTop:"Employee Information report, "+ new Date(),
+            exportOptions: {
+            columns:[':visible:not(:last-child)']
+                }
+          },
+            {
+            extend:'print',
+            charset: 'utf-8',
+            bom: true,
 
-      //   ]
+            title:"Artifical Intelligence Center Employee list",
+            messageTop:"Employee Information report, "+ new Date(),
+
+            exportOptions: {
+             columns:[':visible:not(:last-child)']
+                }
+          },
+
+               'colvis',
+               [ 'colvisRestore' ]
+        ]
+
+
     };
+
     this.getAllowances();
   }
 

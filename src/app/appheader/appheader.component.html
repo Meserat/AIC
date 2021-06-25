@@ -5,10 +5,10 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="color: wheat;"><i class="fas fa-bars"></i></a>
     </li>
       <a  class="brand-link">
-        <img src="assets/dist/img/aic.png" alt="AIC Logo" class="brand-image img-circle elevation-3" >
+        <img src="assets/dist/img/aic.png" alt="AIC Logo" class="brand-image img-circle elevation-5" >
 
       </a>
-      <span class="brand-text font-weight-light">
+      <span class="brand-text font-weight-light mt-2">
         <h4 style="color: white; font-style: italic; font-family: 'Times New Roman', Times, serif; margin-top: 4px;"> {{'Site_title' | translate }} </h4>
       </span>
   </ul>
@@ -16,7 +16,7 @@
     <app-messages-dropdown-menu></app-messages-dropdown-menu>
     <app-notifications-dropdown-menu *ngIf="isAccountant()"></app-notifications-dropdown-menu>
     <li class="nav-item">
-      <span class="nav-link"  role="button"><p style="color:white">{{user}} as {{role}}</p></span>
+      <span class="nav-link"  role="button"><p style="color:white">{{user}} {{'logged_in_as'|translate}}{{role}}</p></span>
 
     </li>
     <li class="nav-item">
