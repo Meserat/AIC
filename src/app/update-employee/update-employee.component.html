@@ -114,22 +114,12 @@
 
         <div class="form-group">
           <label for="Directorate" class="text-center"> {{'Directorate'|translate}}</label>
-          <select class="form-control" placeholder="directorId" [(ngModel)]="employee.employeeDirectorate" name="directorateId">
-            <option *ngFor="let directorate of directorates" [ngValue]="directorate">{{directorate.directorateName}}
+          <select class="form-control" placeholder="directorId" [(ngModel)]="employeeDirectorate" name="directorateId">
+            <option *ngFor="let directorate of directorates" [ngValue]="directorate.directorateName">{{directorate.directorateName}}
             </option>
 
           </select>
-
         </div>
-
-
-
-
-
-
-
-
-
         </div>
 
         <!-- Section -->
@@ -162,8 +152,8 @@
         </div>
         <div class="form-group">
           <label for="position salary" class="text-center">{{'Position_Salary'|translate}}</label>
-          <select class="form-control" placeholder="positionid" [(ngModel)]="employee.position" name="positionId">
-            <option *ngFor="let position of (positions|async)" [ngValue]="position">{{position.positionName}}
+          <select class="form-control" placeholder="positionid" [(ngModel)]="employeePositionName" name="positionId">
+            <option *ngFor="let position of positions" [ngValue]="position.positionName">{{position.positionName}}
               {{position.positionSalary}}</option>
 
           </select>

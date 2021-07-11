@@ -32,7 +32,7 @@ export class UpdateEmployeeComponent implements OnInit {
   directorates:Directorate[]
 
 
-positions:Observable<Position []>
+positions:Position [];
   positionId:number;
   @Input() position:Position
 
@@ -44,11 +44,17 @@ positions:Observable<Position []>
 
   employeeICFGrade:String;
   employeeLevel:String;
+  employeeDirectorate:String;
+  employeePositionSalary:Number;
+  employeeType:String;
   employeeSalary:Salary = new Salary();
+  newPosition:Position = new Position();
+  newDirectorate:Directorate = new Directorate();
   employeeICFGrade1:ICFGrade=new ICFGrade();
 
   @Input() salary:Salary;
   employee:Employee;
+  employeePositionName: String;
   constructor(private employeService:EmployeeService,
   private salaryService:SalaryService,private positionService:PositionService,
   private levelService:LevelService, private tokenStorage:TokenStorageService,
@@ -60,13 +66,21 @@ positions:Observable<Position []>
     gotoEmployeelist(){
   this.router.navigate(["/hroffice"])
 }
-
+setDirectorate(){
+  this.directorates.forEach(dir=>{
+    if(dir.directorateName == this.employeeDirectorate){
+      this.newDirectorate = dir;
+    }
+  })
+}
 getSalaryByICFGradeLevel() {
+  console.log(this.employeeICFGrade);
   this.salaryService.getSalaryList().subscribe(data=>{
     data.forEach(salary=>{
-    if((salary.icfGrade.icfGradeName == this.employee.employeeSalary.icfGrade.icfGradeName)&&
-    (salary.level.levelName == this.employee.employeeSalary.level.levelName)){
-      this.employeeSalary = salary;
+      if((salary.icfGrade.icfGradeName == this.employeeICFGrade) &&
+      (salary.level.levelName == this.employeeLevel)){
+        this.employeeSalary = salary;
+        console.log(salary);
     }
   });
   console.log(data)
@@ -85,17 +99,25 @@ getICFGradeData(){
   });
 
 }
+setEmployeePosition(){
+  this.positions.forEach(pos=>{
+    if(pos.positionName == this.employeePositionName){
+      this.newPosition = pos;
+    }
+  })
 
+}
 getSalaryData(){
   this.salaryService.getSalaryList().subscribe(data=>{
     this.salaries = data;
-    console.log(this.salaries);
 
   });
 }
 // Load Position
 getSalaryOfPosition(){
-  this.positions=this.positionService.getPositionList1();
+  this.positionService.getPositionList().subscribe(data=>{
+    this.positions = data;
+  })
 
 }
 
@@ -134,18 +156,29 @@ getDirectorate(){
       this.employee = data;
       this.employeeICFGrade = data.employeeSalary.icfGrade.icfGradeName;
       this.employeeLevel = data.employeeSalary.level.levelName;
+      this.employeeDirectorate=data.employeeDirectorate.directorateName;
+      this.employeePositionName  = data.position.positionName;
+      this.employeeType=data.employeeType;
+
 
       }, error => console.log(error));
     }
   }
 
   onSubmit(){
-    this.getSalaryByICFGradeLevel()
+    this.getSalaryByICFGradeLevel();
+    this.setDirectorate();
+    this.setEmployeePosition();
+
     this.employee.employeeSalary = this.employeeSalary;
+    this.employee.position = this.newPosition;
+    this.employee.employeeDirectorate = this.newDirectorate;
+
+    console.log(this.employeeSalary);
+
     this.employeService.updateEmployee(this.id, this.employee).subscribe( data =>{
       this.goToEmployeeList();
-    }
-    , error => console.log(error));
+    }  , error => console.log(error));
   }
 
   goToEmployeeList(){

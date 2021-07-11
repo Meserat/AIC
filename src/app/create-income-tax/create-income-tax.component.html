@@ -22,18 +22,19 @@
     <div class="form-group">
       <label> {{'Minimum_Value'|translate}}</label>
       <input type="text" class="form-control" id="firstName"
-       [(ngModel)]="incometax.incomeTaxMin" name="firstName" required>
+       [(ngModel)]="incometax.incomeTaxMin" name="firstName" placeholder="{{'Minimum_Value'|translate}}" required >
     </div>
 
     <div class="form-group">
       <label> {{'Maximum_Value'|translate}} </label>
-      <input type="text" class="form-control" id="section" [(ngModel)]="incometax.incomeTaxMax" name="lastName" required>
+      <input type="text" class="form-control" id="section"
+      [(ngModel)]="incometax.incomeTaxMax" name="lastName" placeholder=" {{'Maximum_Value'|translate}}" required>
     </div>
 
     <div class="form-group">
       <label> {{'Amount'|translate}} </label>
       <input type="text" class="form-control" id="level" [(ngModel)]="incometax.incomeTaxpercentage"
-      name="emailId" required >
+      name="emailId" placeholder="{{'Amount'|translate}}" required >
     </div>
     <div class="form-group">
       <label> {{'Offset'|translate}} </label>
